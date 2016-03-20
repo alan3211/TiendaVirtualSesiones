@@ -1,0 +1,127 @@
+body{
+background-image: url(../img/fondo.png);
+background-size: 1366px 980px;
+background-repeat: repeat;
+background-attachment:scroll;
+font-family: "Century Gothic";
+}
+
+#logo img{
+    width: 110px;
+    height: 140px;
+}
+
+header #titulo p{   
+    font-family: "Century Gothic";
+    font-size: 50px;
+    color: #FFF;
+    text-align: center;
+    
+}
+
+#menu1{
+    margin: 0 auto;        
+}
+
+#inicio{
+    border: 2px solid #FFF;
+    color: #FFF;
+   text-align: center;
+   margin: 0 auto;;      
+}
+
+
+#descripcion{
+    color: #FFF;      
+}
+
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: inline-block;
+    background-color: #8E44AD;
+     border-radius: 3px;
+}
+
+li {
+    float: left;
+}
+
+section img{
+   display: inline-block;
+   width: 400px;
+   height: 400px;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+li a:hover {
+    background-color: #9E106C;
+}
+
+form .Compus{   
+ font-family:"Century Gothic"; 
+  background: #8E44AD;
+  margin: 5px;
+  text-align:center;
+  color: #FFF;  
+  border: 5px solid #FFF;
+  width: 220px; 
+  display: inline-block;
+ }
+
+ #menu{ 
+ color: #FFF;
+ font-weight:300;
+text-align: center; 
+ font-family: "Century Gothic";
+ }
+ 
+ #checa{
+color: #FFF;
+font-weight:500; 
+ background: #27AE60;
+ font-family: "Century Gothic";
+ }
+ 
+img{
+   width: 100px;
+   height: 100px;
+   border-radius: 5px;
+}
+.boton{
+ background: #8E44AD;
+ color: #FFF;
+ font-weight:300;
+ font-family: "Century Gothic"; 
+}
+
+#Contenedor{
+    margin: 0;
+    text-align: center;
+}
+
+footer{    
+    color: #FFF;
+    font-family: "Century Gothic";
+    text-align: center;    
+}
+
+#recibo{   
+    background: #FFF;
+    font-size: larger; 
+ margin: 0 auto;
+    border:  3px solid #000;
+    font-family: "Century Gothic";  
+    width: 300px;
+}
