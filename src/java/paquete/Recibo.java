@@ -47,7 +47,7 @@ public class Recibo extends HttpServlet {
                 + "        <!--Encabezado-->\n"
                 + "                <header>\n"
                 + "                        <div id = \"logo\">\n"
-                + "                            <a href=\"Menu\"><img src=\"./img/logo.png\" alt=\"Alan's Market\"></a> \n"
+                + "                            <img src=\"./img/logo.png\" alt=\"Alan's Market\">\n"
                 + "                        </div>\n"
                 + "                        <div id=\"titulo\">\n"
                 + "                            <p>Ticket de Compra</p>\n"
