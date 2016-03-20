@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">    
-    <servlet>
-        <servlet-name>Menu</servlet-name>
-        <servlet-class>paquete.Menu</servlet-class>
-    </servlet>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Computacion</servlet-name>
         <servlet-class>paquete.Computacion</servlet-class>
@@ -23,11 +19,7 @@
     <servlet>
         <servlet-name>Calcula</servlet-name>
         <servlet-class>paquete.Calcula</servlet-class>
-    </servlet>    
-    <servlet-mapping>
-        <servlet-name>Menu</servlet-name>
-        <url-pattern>/Menu</url-pattern>
-    </servlet-mapping>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Computacion</servlet-name>
         <url-pattern>/Computacion</url-pattern>

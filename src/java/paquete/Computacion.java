@@ -13,50 +13,38 @@ public class Computacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html; charset = UTF-8");
+        response.setContentType("text/html; charset = UTF-8");        
         HttpSession sesion = request.getSession();
-              String pr1 = (String)request.getParameter("pr1");
-      String pr2 = (String)request.getParameter("pr2");
-      String pr3 = (String)request.getParameter("pr3");
-      String pr4 = (String)request.getParameter("pr4");
-      String pr5 = (String)request.getParameter("pr5");
-      String pr6 = (String)request.getParameter("pr6");
-      String pr7 = (String)request.getParameter("pr7");
-      String pr8 = (String)request.getParameter("pr8");
-      String pr9 = (String)request.getParameter("pr9");
-      String pr10 = (String)request.getParameter("pr10");
-      String pr11 = (String)request.getParameter("pr11");
-      String pr12 = (String)request.getParameter("pr12");
+          String pr1 = (String) sesion.getAttribute("pr1");    
+        String pr2 = (String) sesion.getAttribute("pr2");
+        String pr3= (String) sesion.getAttribute("pr3");
+        String pr4= (String) sesion.getAttribute("pr4");
+       String pr5 = (String) sesion.getAttribute("pr5");
+       String pr6 = (String) sesion.getAttribute("pr6");
+       String pr7 = (String) sesion.getAttribute("pr7");
+       String pr8 = (String) sesion.getAttribute("pr8");
+        String pr9 = (String) sesion.getAttribute("pr9");
+        String pr10 = (String) sesion.getAttribute("pr10");
+        String pr11 = (String) sesion.getAttribute("pr11");
+        String pr12 = (String) sesion.getAttribute("pr12");
         //Computacion     
-        String pr1_1 = (String) sesion.getAttribute("pr1");
-        String pr2_1 = (String) sesion.getAttribute("pr2");
-        String pr3_1= (String) sesion.getAttribute("pr3");
-        String pr4_1= (String) sesion.getAttribute("pr4");
         //Guarda en atributos de sesion
         sesion.setAttribute("pr1", pr1);
         sesion.setAttribute("pr2", pr2);
         sesion.setAttribute("pr3", pr3);
         sesion.setAttribute("pr4", pr4);
-        //Electrodomesticos
-       String pr5_1 = (String) sesion.getAttribute("pr5");
-       String pr6_1 = (String) sesion.getAttribute("pr6");
-       String pr7_1 = (String) sesion.getAttribute("pr7");
-       String pr8_1 = (String) sesion.getAttribute("pr8");
+        //Electrodomesticos     
         //Recuperarlos en atributos
         sesion.setAttribute("pr5", pr5);
         sesion.setAttribute("pr6", pr6);
         sesion.setAttribute("pr7", pr7);
         sesion.setAttribute("pr8", pr8);
         //Muebleria  
-        String pr9_1 = (String) sesion.getAttribute("pr9");
-        String pr10_1 = (String) sesion.getAttribute("pr10");
-        String pr11_1 = (String) sesion.getAttribute("pr11");
-        String pr12_1 = (String) sesion.getAttribute("pr12");
         //Guardarlos en atributos de sesion
         sesion.setAttribute("pr9", pr9);
         sesion.setAttribute("pr10", pr10);
         sesion.setAttribute("pr11", pr11);
-        sesion.setAttribute("pr12", pr12);
+        sesion.setAttribute("pr12", pr12);      
         // Proceso de respuesta
         PrintWriter out = response.getWriter();
         out.println("<!DOCTYPE html>\n"
@@ -73,7 +61,7 @@ public class Computacion extends HttpServlet {
                 + "        <!--Encabezado-->\n"
                 + "                <header>\n"
                 + "                        <div id = \"logo\">\n"
-                + "                            <a href=\"Menu\"><img src=\"./img/logo.png\" alt=\"Alan's Market\"></a> \n"
+                + "                            <img src=\"./img/logo.png\" alt=\"Alan's Market\">\n"
                 + "                        </div>\n"
                 + "                        <div id=\"titulo\">\n"
                 + "                            <p>Departamento de Computaci&oacute;n</p>\n"
