@@ -11,6 +11,7 @@ font-family: "Century Gothic";
     height: 140px;
 }
 
+
 header #titulo p{   
     font-family: "Century Gothic";
     font-size: 50px;
@@ -30,11 +31,9 @@ header #titulo p{
    margin: 0 auto;;      
 }
 
-
 #descripcion{
     color: #FFF;      
 }
-
 
 ul{
     list-style-type: none;

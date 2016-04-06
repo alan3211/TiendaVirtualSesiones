@@ -1,4 +1,5 @@
 package paquete;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -8,41 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class Mueble extends HttpServlet {   
+    
+    private String[] obteneratributos = new String[12];    
+    private String [] atributos = new String[12];
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException { 
         response.setContentType("text/html; charset = UTF-8");        
         HttpSession sesion = request.getSession();  
-       String pr1 = (String)request.getParameter("pr1");
-      String pr2 = (String)request.getParameter("pr2");
-      String pr3 = (String)request.getParameter("pr3");
-      String pr4 = (String)request.getParameter("pr4");
-      String pr5 = (String)request.getParameter("pr5");
-      String pr6 = (String)request.getParameter("pr6");
-      String pr7 = (String)request.getParameter("pr7");
-      String pr8 = (String)request.getParameter("pr8");
-      String pr9 = (String)request.getParameter("pr9");
-      String pr10 = (String)request.getParameter("pr10");
-      String pr11 = (String)request.getParameter("pr11");
-      String pr12 = (String)request.getParameter("pr12");
-        //Computacion           
-        //Guarda en atributos de sesion
-        sesion.setAttribute("pr1", pr1);
-        sesion.setAttribute("pr2", pr2);
-        sesion.setAttribute("pr3", pr3);
-        sesion.setAttribute("pr4", pr4);
-        //Electrodomesticos     
-        //Recuperarlos en atributos
-        sesion.setAttribute("pr5", pr5);
-        sesion.setAttribute("pr6", pr6);
-        sesion.setAttribute("pr7", pr7);
-        sesion.setAttribute("pr8", pr8);
-        //Muebleria      
-        //Guardarlos en atributos de sesion
-        sesion.setAttribute("pr9", pr9);
-        sesion.setAttribute("pr10", pr10);
-        sesion.setAttribute("pr11", pr11);
-        sesion.setAttribute("pr12", pr12);           
+        procesaatrib(sesion); /*Recupera todos los atributos de session*/
+        setAtrib(sesion); /*Guarda todos los atributos de sesion*/             
            // Proceso de respuesta
         PrintWriter out = response.getWriter();
         out.println("<!DOCTYPE html>\n"
@@ -79,7 +56,7 @@ public class Mueble extends HttpServlet {
                 + "                     <img src=\"./Muebles/mueble1.jpg\" alt=\"Cajonera\">\n"
                 + "                     <p>Llevatelo para tu Television se vea espectacular</p>\n"
                 + "                     <p>$8,000</p>\n");
-                                    if(pr9 == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr9\" >");
+                                    if(atributos[8] == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr9\" >");
                                     else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr9\" checked>");
                 out.println("             </div>\n"
                 + "              <div  class = \"Compus\">\n"
@@ -87,7 +64,7 @@ public class Mueble extends HttpServlet {
                 + "                     <img src=\"./Muebles/mueble2.jpg\" alt=\"repisa\">\n"
                 + "                     <p>Para guardar tus libros o documentos atu gusto</p>\n"
                 + "                     <p>$2,800</p>\n");
-                                    if(pr10 == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr10\" >");
+                                    if(atributos[9] == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr10\" >");
                                     else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr10\" checked>");
                 out.println( "             </div>           \n"
                 + "              <div  class = \"Compus\">\n"
@@ -95,7 +72,7 @@ public class Mueble extends HttpServlet {
                 + "                     <img src=\"./Muebles/mueble3.jpg\" alt=\"Sofa deluxe\">\n"
                 + "                     <p>Ideal para que tu  casa se vea elegante</p>\n"
                 + "                     <p>$7,000</p>\n");
-                  if(pr11 == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr11\" >");
+                  if(atributos[10] == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr11\" >");
                                     else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr11\" checked>");
                out.println( "             </div>           \n"
                 + "              <div  class = \"Compus\">\n"
@@ -103,26 +80,14 @@ public class Mueble extends HttpServlet {
                 + "                     <img src=\"./Muebles/mueble4.jpg\" alt=\"comedor simple\">\n"
                 + "                     <p>Especialmente para tu sala moderna</p>\n"
                 + "                     <p>$10,000</p>\n");
-                  if(pr12 == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr12\" >");
+                  if(atributos[11]== null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr12\" >");
                                     else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr12\" checked>");
                 out.println( "             </div>                                                        \n");
                 out.println( "             </div>                                                        \n");
-                   if(pr1 == null) out.println("<input type=\"checkbox\" name=\"pr1\" >\n");
-                   else out.println("<input type=\"checkbox\" name=\"pr1\" checked>\n");
-                    if(pr2== null) out.println("<input type=\"checkbox\" name=\"pr2\" >\n");
-                   else out.println("<input type=\"checkbox\" name=\"pr2\" checked>\n");
-                     if(pr3 == null) out.println("<input type=\"checkbox\" name=\"pr3\" >\n");
-                   else out.println("<input type=\"checkbox\" name=\"pr3\" checked>\n");
-                      if(pr4 == null) out.println("<input type=\"checkbox\" name=\"pr4\" >\n");
-                   else out.println("<input type=\"checkbox\" name=\"pr4\" checked>\n");
-                       if(pr5 == null) out.println("<input type=\"checkbox\" name=\"pr5\" >\n");
-                   else out.println("<input type=\"checkbox\" name=\"pr5\" checked>\n");
-                        if(pr6 == null) out.println("<input type=\"checkbox\" name=\"pr6\" >\n");
-                   else out.println("<input type=\"checkbox\" name=\"pr6\" checked>\n");
-                         if(pr7 == null) out.println("<input type=\"checkbox\" name=\"pr7\" >\n");
-                   else out.println("<input type=\"checkbox\" name=\"pr7\" checked>\n");           
-                          if(pr8 == null) out.println("<input type=\"checkbox\" name=\"pr8\" >\n");
-                   else out.println("<input type=\"checkbox\" name=\"pr8\" checked>\n");     
+                    for (int i = 0; i < 8; i++) {                  
+                                 if(atributos[i] == null) out.println("<input type=\"checkbox\" name=\"pr"+i+"\" >\n");
+                                 else out.println("<input type=\"checkbox\" name=\"pr"+i+"\" checked>\n");
+                     }
                 out.println(" <script type=\"text/javascript\" >\n"
                 + "            document.sig.pr1.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr2.style.visibility=\"hidden\"; \n"
@@ -151,4 +116,17 @@ public class Mueble extends HttpServlet {
     public String getServletInfo() {
         return "Alan-Server<br>Version:1.0";
     }
+    
+       private void procesaatrib(HttpSession sesion){
+        for (int i = 0; i < atributos.length; i++) {
+                atributos[i] = (String)sesion.getAttribute("pr"+i);
+        }
+    }
+    
+    private void setAtrib(HttpSession sesion){
+        for (int i = 0; i < atributos.length; i++) {
+            sesion.setAttribute("pr"+i, atributos[i]);
+        }
+    }
+    
 }
