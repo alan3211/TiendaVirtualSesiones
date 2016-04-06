@@ -13,6 +13,8 @@ public class Recibo extends HttpServlet {
     private int precios[] = {
         25000,29000,12000,8000,9000,2000,3000,14000,8000,2800,7000,10000
     };        
+    private String[] obteneratributos = new String[12];    
+    private String [] atributos = new String[12];
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -21,18 +23,7 @@ public class Recibo extends HttpServlet {
         // Proceso de respuesta
         PrintWriter out = response.getWriter();
         HttpSession sesion = request.getSession();
-        String pr1 = (String) sesion.getAttribute("pr1");
-        String pr2 = (String) sesion.getAttribute("pr2");
-        String pr3 = (String) sesion.getAttribute("pr3");
-        String pr4 = (String) sesion.getAttribute("pr4");
-        String pr5 = (String) sesion.getAttribute("pr5");
-        String pr6 = (String) sesion.getAttribute("pr6");
-        String pr7 = (String) sesion.getAttribute("pr7");
-        String pr8 = (String) sesion.getAttribute("pr8");
-        String pr9 = (String) sesion.getAttribute("pr9");
-        String pr10 = (String) sesion.getAttribute("pr10");
-        String pr11 = (String) sesion.getAttribute("pr11");
-        String pr12 = (String) sesion.getAttribute("pr12");        
+        procesaatrib(sesion); /*Recupera todos los atributos de session*/       
       out.println("<!DOCTYPE html>\n"
                 + "<html lang=\"es\">\n"
                 + "        <head>                 \n"
@@ -56,76 +47,76 @@ public class Recibo extends HttpServlet {
                 + "            <div id=\"recibo\">\n"
                 + "                <p>Ticket-Alan's Market</p>\n"               
                 + "                <p>Concepto                           Precio</p>\n");
-        if (pr1 == null) {
+        if (atributos[0] == null) {
         } else {
             out.println("<p>MAC OSX                                     $ "+precios[0]+"</p>");
             total+=precios[0];
-            sesion.setAttribute("pr1", pr1);
+            sesion.setAttribute("pr0", atributos[0]);
         }
-        if (pr2 == null) {
+        if (atributos[1] == null) {
         } else {
             out.println("<p>Alienware                                   $"+precios[1]+"</p>");
-            sesion.setAttribute("pr2", pr2);
+            sesion.setAttribute("pr1", atributos[1]);
             total+=precios[1];
         }
-        if (pr3 == null) {
+        if (atributos[2] == null) {
         } else {
             out.println("<p>HP Pavilion                                 $"+precios[2]+"</p>");
-            sesion.setAttribute("pr3", pr3);
+            sesion.setAttribute("pr2", atributos[2]);
             total+=precios[3];
         }
-        if (pr4 == null) {
+        if (atributos[3] == null) {
         } else {
             out.println("<p>Samsung                                     $"+precios[3]+"</p>");
-            sesion.setAttribute("pr4", pr4);
+            sesion.setAttribute("pr3", atributos[3]);
             total+=precios[3];
         }
-        if (pr5 == null) {
+        if (atributos[4] == null) {
         } else {
             out.println("<p>Lavadora Samsung                 $"+precios[4]+"</p>");
-            sesion.setAttribute("pr5", pr5);
+            sesion.setAttribute("pr4", atributos[4]);
             total+=precios[4];
         }
-        if (pr6 == null) {
+        if (atributos[5] == null) {
         } else {
             out.println("<p>Licuadora Oster                        $"+precios[5]+"</p>");
-            sesion.setAttribute("pr6", pr6);
+            sesion.setAttribute("pr5", atributos[5]);
             total+=precios[5];
         }
-        if (pr7 == null) {
+        if (atributos[6] == null) {
         } else {
             out.println("<p>Microondas LG                           $"+precios[6]+"</p>");
-            sesion.setAttribute("pr7", pr7);
+            sesion.setAttribute("pr6", atributos[6]);
             total+=precios[6];
         }
-        if (pr8 == null) {
+        if (atributos[7] == null) {
         } else {
             out.println("<p>Refrigerador GE                          $"+precios[7]+"</p>");
-            sesion.setAttribute("pr8", pr8);
+            sesion.setAttribute("pr7", atributos[7]);
             total+=precios[7];
         }
-         if (pr9 == null) {
+         if (atributos[8] == null) {
         } else {
             out.println("<p>Cajonera                                       $"+precios[8]+"</p>");
-            sesion.setAttribute("pr9", pr9);
+            sesion.setAttribute("pr8", atributos[8]);
             total+=precios[8];
         }
-          if (pr10 == null) {
+          if (atributos[9] == null) {
         } else {
             out.println("<p>Repisa                                             $"+precios[9]+"</p>");
-            sesion.setAttribute("pr10", pr10);
+            sesion.setAttribute("pr9", atributos[9]);
             total+=precios[9];
         }
-           if (pr11 == null) {
+           if (atributos[10] == null) {
         } else {
             out.println("<p>Sofa Deluxe                                 $"+precios[10]+"</p>");
-            sesion.setAttribute("pr11", pr11);
+            sesion.setAttribute("pr10", atributos[10]);
             total+=precios[10];
         }
-            if (pr12 == null) {
+            if (atributos[11] == null) {
         } else {
             out.println("<p>Comedor simple                          $"+precios[11]+"</p>");
-            sesion.setAttribute("pr12", pr12);
+            sesion.setAttribute("pr11", atributos[11]);
             total+=precios[11];
         } 
          out.println("<p>Total                                                   $"+total+"</p>");
@@ -139,11 +130,15 @@ public class Recibo extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
-    
-
+   
     @Override
     public String getServletInfo() {
         return "Alan-Server<br>Version:1.0";
     }
-
+      private void procesaatrib(HttpSession sesion){
+        for (int i = 0; i < atributos.length; i++) {
+                atributos[i] = (String)sesion.getAttribute("pr"+i);
+        }
+    }
+    
 }
