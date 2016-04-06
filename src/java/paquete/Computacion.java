@@ -9,15 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class Computacion extends HttpServlet {
-    private String[] obteneratributos = new String[12];    
-    private String [] atributos = new String[12];
+
+   private String [] atributos = new String[12];
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html; charset = UTF-8");        
         HttpSession sesion = request.getSession();
-        procesaatrib(sesion); /*Recupera todos los atributos de session*/
-        setAtrib(sesion); /*Guarda todos los atributos de sesion*/ 
+        /*Procesando atributos*/
+        for (int i = 0; i < atributos.length; i++) {
+            atributos[i] = (String)sesion.getAttribute("pr"+i);
+            sesion.setAttribute("pr"+i, atributos[i]);
+        }
         // Proceso de respuesta
         PrintWriter out = response.getWriter();
         out.println("<!DOCTYPE html>\n"
@@ -55,9 +58,9 @@ public class Computacion extends HttpServlet {
                 + "                     <p>Ideal para las personas muy capacitadas en desarrollo profesional</p>\n"
                 + "                     <p>$25,000</p>\n");
         if (atributos[0] == null) {
-            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr1\" >");
+            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr0\" >");
         } else {
-            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr1\" checked>");
+            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr0\" checked>");
         }
         out.println("             </div>\n"
                 + "              <div class=\"Compus\">\n"
@@ -66,9 +69,9 @@ public class Computacion extends HttpServlet {
                 + "                     <p>Experimenta el poder de esta computadora para juegos</p>\n"
                 + "                     <p>$29,000</p>\n");
         if (atributos[1] == null) {
-            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr2\" >");
+            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr1\" >");
         } else {
-            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr2\" checked>");
+            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr1\" checked>");
         }
         out.println("             </div>           \n"
                 + "              <div class=\"Compus\">\n"
@@ -77,9 +80,9 @@ public class Computacion extends HttpServlet {
                 + "                     <p>Prueba esta computadora para oficina, o simplemente para casa</p>\n"
                 + "                     <p>$12,000</p>\n");
         if (atributos[2] == null) {
-            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr3\" >");
+            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr2\" >");
         } else {
-            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr3\" checked>");
+            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr2\" checked>");
         }
         out.println("             </div>           \n"
                 + "              <div class=\"Compus\">\n"
@@ -88,9 +91,9 @@ public class Computacion extends HttpServlet {
                 + "                     <p>Economica y simple para trabajos de la escuela de los niños</p>\n"
                 + "                     <p>$8,000</p>\n");
         if (atributos[3] == null) {
-            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr4\" >");
+            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr3\" >");
         } else {
-            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr4\" checked>");
+            out.println("                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr3\" checked>");
         }
         out.println("</div>");
         out.println("             </div>                                                        \n");        
@@ -99,6 +102,7 @@ public class Computacion extends HttpServlet {
                             else out.println("<input type=\"checkbox\" name=\"pr"+i+"\" checked>\n");
                    }
                 out.println(" <script type=\"text/javascript\" >\n"
+                + "            document.sig.pr4.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr5.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr6.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr7.style.visibility=\"hidden\"; \n"
@@ -106,7 +110,6 @@ public class Computacion extends HttpServlet {
                 + "            document.sig.pr9.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr10.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr11.style.visibility=\"hidden\"; \n"
-                + "            document.sig.pr12.style.visibility=\"hidden\"; \n"
                 + "        </script>\n"                
                 + "             </form>                                                        \n"
                 + "        <!--Pie de pagina-->\n"
@@ -128,17 +131,5 @@ public class Computacion extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Alan-Server<br>Version:1.0";
-    }
-    
-    private void procesaatrib(HttpSession sesion){
-        for (int i = 0; i < atributos.length; i++) {
-                atributos[i] = (String)sesion.getAttribute("pr"+i);
-        }
-    }
-    
-    private void setAtrib(HttpSession sesion){
-        for (int i = 0; i < atributos.length; i++) {
-            sesion.setAttribute("pr"+i, atributos[i]);
-        }
     }
 }

@@ -8,18 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class Electrodomestico extends HttpServlet {   
-    
-    private String[] obteneratributos = new String[12];    
-    private String [] atributos = new String[12];
-    
+public class Electrodomestico extends HttpServlet {           
+    private String [] atributos = new String[12];    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException { 
         response.setContentType("text/html; charset = UTF-8");        
         HttpSession sesion = request.getSession();         
-        procesaatrib(sesion); /*Recupera todos los atributos de session*/
-        setAtrib(sesion); /*Guarda todos los atributos de sesion*/ 
+       /*Procesando atributos*/
+        for (int i = 0; i < atributos.length; i++) {
+            atributos[i] = (String)sesion.getAttribute("pr"+i);
+            sesion.setAttribute("pr"+i, atributos[i]);
+        }
            // Proceso de respuesta
         PrintWriter out = response.getWriter();
         out.println("<!DOCTYPE html>\n"
@@ -56,50 +56,50 @@ public class Electrodomestico extends HttpServlet {
                 + "                     <img src=\"./Electrodomestico/lavadorasamsung.jpg\" alt=\"Lavadora\">\n"
                 + "                     <p>Llevate esta lavadora  para un lavado increible</p>\n"
                 + "                     <p>$9,000</p>\n");
-                                    if(atributos[4] == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr5\" >");
-                                    else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr5\" checked>");
+                                    if(atributos[4] == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr4\" >");
+                                    else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr4\" checked>");
                 out.println("             </div>\n"
                 + "              <div class=\"Compus\">\n"
                 + "                     <p>Licuadora Oster</p>\n"
                 + "                     <img src=\"./Electrodomestico/licuadoraoster.jpg\" alt=\"Licuadora\">\n"
                 + "                     <p>Para realizar tus jugos  tu gusto</p>\n"
                 + "                     <p>$2,000</p>\n");
-                                    if(atributos[5]== null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr6\" >");
-                                    else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr6\" checked>");
+                                    if(atributos[5]== null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr5\" >");
+                                    else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr5\" checked>");
                 out.println( "             </div>           \n"
                 + "              <div class=\"Compus\">\n"
                 + "                     <p>Microondas LG</p>\n"
                 + "                     <img src=\"./Electrodomestico/microondaslg.jpg\" alt=\"Microondas\">\n"
                 + "                     <p>Ideal para oficina o simplemente en casa</p>\n"
                 + "                     <p>$3,000</p>\n");
-                  if(atributos[6] == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr7\" >");
-                                    else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr7\" checked>");
+                  if(atributos[6] == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr6\" >");
+                                    else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr6\" checked>");
                out.println( "             </div>           \n"
                 + "              <div class=\"Compus\">\n"
                 + "                     <p>Refrigerador GE</p>\n"
                 + "                     <img src=\"./Electrodomestico/refrige.jpg\" alt=\"refrigerador\">\n"
                 + "                     <p>Para guardar tus alimentos con ahorro de energia</p>\n"
                 + "                     <p>$14,000</p>\n");
-                  if(atributos[4] == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr8\" >");
-                                    else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr8\" checked>");
+                  if(atributos[7] == null)  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr7\" >");
+                                    else  out.println( "                     Agregar: &nbsp;&nbsp;<input type=\"checkbox\" name=\"pr7\" checked>");
                 out.println( "             </div>                                                        \n");
                 out.println( "             </div>                                                        \n");
                 for (int i = 0; i < atributos.length; i++) {
-                    if(i >3 && i < 8) continue;
+                    if(i < 3 && i < 8) continue;
                     else{
                              if(atributos[i] == null) out.println("<input type=\"checkbox\" name=\"pr"+i+"\" >\n");
                             else out.println("<input type=\"checkbox\" name=\"pr"+i+"\" checked>\n");
                         }
                     }                
                 out.println(" <script type=\"text/javascript\" >\n"
+                + "            document.sig.pr0.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr1.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr2.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr3.style.visibility=\"hidden\"; \n"
-                + "            document.sig.pr4.style.visibility=\"hidden\"; \n"
+                + "            document.sig.pr8.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr9.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr10.style.visibility=\"hidden\"; \n"
                 + "            document.sig.pr11.style.visibility=\"hidden\"; \n"
-                + "            document.sig.pr12.style.visibility=\"hidden\"; \n"
                 + "        </script>\n"                             
                 + "             </form>                                                        \n"               
                 + "        <!--Pie de pagina-->\n"
@@ -118,17 +118,5 @@ public class Electrodomestico extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Alan-Server<br>Version:1.0";
-    }
-      private void procesaatrib(HttpSession sesion){
-        for (int i = 0; i < atributos.length; i++) {
-                atributos[i] = (String)sesion.getAttribute("pr"+i);
-        }
-    }
-    
-    private void setAtrib(HttpSession sesion){
-        for (int i = 0; i < atributos.length; i++) {
-            sesion.setAttribute("pr"+i, atributos[i]);
-        }
-    }
-
+    }     
 }
